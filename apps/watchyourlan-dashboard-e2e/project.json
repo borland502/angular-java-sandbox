@@ -1,0 +1,9 @@
+{
+  "name": "watchyourlan-dashboard-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/watchyourlan-dashboard-e2e/src",
+  "implicitDependencies": ["watchyourlan-dashboard"],
+  "// targets": "to see all targets run: nx show project watchyourlan-dashboard-e2e --web",
+  "targets": {}
+}
