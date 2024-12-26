@@ -1,0 +1,21 @@
+{
+  "name": "watchyourlan-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/watchyourlan-services/src",
+  "targets": {
+    "build": {
+      "executor": "@nxrocks/nx-spring-boot:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "target"
+      }
+    },
+    "serve": {
+      "executor": "@nxrocks/nx-spring-boot:serve",
+      "options": {
+        "outputPath": "target"
+      }
+    }
+  },
+  "tags": []
+}
