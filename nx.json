@@ -59,6 +59,12 @@
       "options": {
         "targetName": "lint"
       }
+    },
+    {
+      "plugin": "@njxplus/nx-maven/plugin",
+      "options": {
+        "targetName": "mvn:build"
+      }
     }
   ],
   "generators": {
