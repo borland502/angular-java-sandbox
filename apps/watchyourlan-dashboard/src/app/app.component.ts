@@ -1,14 +1,26 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatButton } from '@angular/material/button';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
+import { PreloaderService, SettingsService } from '@core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-    imports: [RouterModule, MatToolbar, MatButton],
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
+  selector: 'app-root',
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
 })
-export class AppComponent {
-    title = 'watchyourlan-dashboard';
+export class AppComponent implements OnInit, AfterViewInit {
+  private readonly preloader = inject(PreloaderService);
+  private readonly settings = inject(SettingsService);
+
+  title = 'matero-angular';
+
+  ngOnInit() {
+    this.settings.setDirection();
+    this.settings.setTheme();
+  }
+
+  ngAfterViewInit() {
+    this.preloader.hide();
+  }
 }

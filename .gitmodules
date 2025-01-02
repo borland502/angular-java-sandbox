@@ -1,0 +1,3 @@
+[submodule "apps/ng-matero"]
+	path = apps/ng-matero
+	url = https://github.com/ng-matero/ng-matero.git
