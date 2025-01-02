@@ -41,7 +41,13 @@
       ],
       "@env/*": [
         "apps/ng-matero/src/environments/*"
-      ]
+      ],
+      "@ng-matero/routes": [
+        "apps/ng-matero/src/app/routes"
+      ],
+      "@ng-matero/routes/*": [
+        "apps/ng-matero/src/app/routes/*"
+      ],
     }
   },
   "exclude": [
