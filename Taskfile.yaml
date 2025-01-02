@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+
+env_files:
+  - ${HOME}/.env # Gum Environment Variables, etc.  Not essential
+
+tasks:
+  init:
+    desc: 'Initialize the Project'
+    preconditions:
+      - sh: gum --version
+        msg: 'Gum is required.  Please install Gum.'
+      - sh: nx --version
+        msg: 'NX is required.  Please install NX.'
+      - sh: git --version
+        msg: 'Git is required.  Please install Git.'
+      - sh: node --version
+        msg: 'Node is required.  Please install Node.'
+      - sh: npm --version
+        msg: 'NPM is required.  Please install NPM.'
+    cmds:
+      - echo "Checks passed"
+
+  gen:app:
+    desc: 'Generate Angular Application with NX'
+    deps:
+      - task: init
+    summary: |
+      Generate Angular Application with NX
+
+      https://nx.dev/nx-api/angular/generators/application
+
+    cmds:
+      - >-
+        if [[ -z "{{.PROJ_NAME}}" ]]; then
+            echo "Project Name is required"
+            exit 2
+        fi
+
+        nx generate @nx/angular:application --name={{.PROJ_NAME}} --directory=apps/{{.PROJ_NAME}} --bundler=esbuild
+        --routing=true --strict=true --linter=eslint --standalone=true
+        {{if ne .API_NAME ""}}--backendProject={{.API_NAME}}{{end}}
+        --e2eTestRunner=playwright --prefix app --style=css --ssr=false --serverRouting=false
+        --tags="type:app,scope:{{.PROJ_NAME}}" --unitTestRunner=jest
+    vars:
+      PROJ_NAME:
+        sh: >-
+          echo $(gum input --placeholder='What is the Project Name?')
+      API_NAME:
+        sh: >-
+          echo $(gum input --placeholder='What is the API Project Name?')
+
+  gen:component:
+    desc: 'Generate Angular Component with NX'
+    deps:
+      - task: init
+    summary: |
+      Generate Angular Component with NX
+
+      https://nx.dev/nx-api/angular/generators/component
+    cmds:
+      - >-
+        nx generate @nx/angular:component --name={{.COMP_NAME}} --path={{.PROJ_NAME}}/src/lib
+    vars:
+      PROJ_NAME:
+        sh: >-
+          # Path is returned relative to the current working directory
+          gum choose $(find ./apps -maxdepth 1 -type d -name '*' ! -name '*-e2e' ! -exec test -e "{}/pom.xml" ';' -print)
+      COMP_NAME:
+        sh: >-
+          echo $(gum input --placeholder='What is the Component Name?')
+
+  build:
+    desc: 'Build all Projects'
+    deps:
+      - task: init
+    cmds:
+      - task: build:java
+      - task: build:angular
+
+  build:java:
+    desc: 'Build Java Projects'
+    deps:
+      - task: init
+    cmds:
+      - nx run-many --target=build --projects=watchyourlan-services
+
+  build:angular:
+    desc: 'Build Angular Projects'
+    deps:
+      - task: init
+    cmds:
+      - nx run-many --target=build --projects=watchyourlan-dashboard
+
+  orval:generate:
+    desc: 'Generate Orval Angular API Clients'
+    summary: |
+      Generate Orval Angular API Clients
+
+      https://orval.dev/docs/guides/angular
+
+      Please note that the backend must be running for generation to work.
+    deps:
+      - task: init
+    cmds:
+      - cmd: >-
+          # Remove the API folder from the Angular project
+          rm -rf apps/watchyourlan-dashboard/src/api
+      - task: orval:generate
+      - npx orval --config ./apps/watchyourlan-dashboard/orval.config.ts --project watchyourlan
+
+  serve:watchyourlan-services:
+    desc: 'Serve the WatchYourLAN Services'
+    deps:
+      - task: build:java
+    cmds:
+      - nx serve watchyourlan-services
+
+  serve:watchyourlan-dashboard:
+    desc: 'Serve the WatchYourLAN Dashboard'
+    deps:
+      - task: build:angular
+    cmds:
+      - nx serve watchyourlan-dashboard
+

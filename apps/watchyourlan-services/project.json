@@ -7,13 +7,13 @@
       "executor": "@nxrocks/nx-spring-boot:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "target"
+        "root": "apps/watchyourlan-services"
       }
     },
     "serve": {
       "executor": "@nxrocks/nx-spring-boot:serve",
       "options": {
-        "outputPath": "target"
+        "root": "apps/watchyourlan-services"
       }
     }
   },

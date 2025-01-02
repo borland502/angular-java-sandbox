@@ -1,0 +1,30 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "type" : "object",
+  "properties" : {
+    "date" : {
+      "type" : "string"
+    },
+    "hw" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "integer"
+    },
+    "ip" : {
+      "type" : "string"
+    },
+    "known" : {
+      "type" : "integer"
+    },
+    "mac" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "now" : {
+      "type" : "integer"
+    }
+  }
+}
