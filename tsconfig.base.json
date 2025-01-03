@@ -18,34 +18,28 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ng-matero": [
-        "apps/ng-matero/src/app"
-      ],
-      "@ng-matero/*": [
-        "apps/ng-matero/src/app/*"
-      ],
-      "@ng-matero/core": [
+      "@core": [
         "apps/ng-matero/src/app/core"
       ],
-      "@ng-matero/core/*": [
+      "@core/*": [
         "apps/ng-matero/src/app/core/*"
       ],
-      "@ng-matero/shared": [
+      "@shared": [
         "apps/ng-matero/src/app/shared"
       ],
-      "@ng-matero/shared/*": [
+      "@shared/*": [
         "apps/ng-matero/src/app/shared/*"
       ],
-      "@ng-matero/theme": [
+      "@theme": [
         "apps/ng-matero/src/app/theme"
       ],
-      "@ng-matero/theme/*": [
+      "@theme/*": [
         "apps/ng-matero/src/app/theme/*"
       ],
-      "@ng-matero/env": [
+      "@env": [
         "apps/ng-matero/src/environments"
       ],
-      "@ng-matero/env/*": [
+      "@env/*": [
         "apps/ng-matero/src/environments/*"
       ],
       "@ng-matero/routes": [
@@ -53,7 +47,7 @@
       ],
       "@ng-matero/routes/*": [
         "apps/ng-matero/src/app/routes/*"
-      ]
+      ],
     }
   },
   "exclude": [
