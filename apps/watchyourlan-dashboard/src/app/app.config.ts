@@ -11,9 +11,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { provideToastr } from 'ngx-toastr';
 
-import { BASE_URL, appInitializerProviders, httpInterceptorProviders } from '@core';
-import { environment } from '@env/environment';
-import { PaginatorI18nService } from '@shared';
+import { BASE_URL, appInitializerProviders, httpInterceptorProviders } from '@ng-matero/core';
+import { environment } from '@ng-matero/env/environment';
+import { PaginatorI18nService } from '@ng-matero/shared';
 import { routes } from './app.routes';
 // Required for AOT compilation
 export function TranslateHttpLoaderFactory(http: HttpClient) {
