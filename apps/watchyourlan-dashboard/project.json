@@ -59,7 +59,9 @@
                 }
             },
             "defaultConfiguration": "development",
-            "options": {}
+            "options": {
+                "proxyConfig": "apps/watchyourlan-dashboard/proxy.conf.json"
+            }
         },
         "extract-i18n": {
             "executor": "@angular-devkit/build-angular:extract-i18n",
