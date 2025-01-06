@@ -1,6 +1,12 @@
 {
-    "/watchyourlan-services": {
-        "target": "http://localhost:3333",
-        "secure": false
+    "/hosts": {
+        "target": "http://localhost:8080/api/v1",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/hosts/*": {
+        "target": "http://localhost:8080/api/v1",
+        "secure": false,
+        "logLevel": "debug"
     }
 }

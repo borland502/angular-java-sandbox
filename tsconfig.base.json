@@ -14,7 +14,11 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+          "@technohouser/api/models": ["apps/watchyourlan-dashboard/src/api/models"],
+          "@technohouser/api/models/*": ["apps/watchyourlan-dashboard/src/api/models/*"],
+          "@technohouser/api/services/*": ["apps/watchyourlan-dashboard/src/api/services/*"],
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }

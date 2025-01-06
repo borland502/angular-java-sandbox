@@ -6,4 +6,51 @@
   <button mat-button routerLink="/settings">Settings</button>
 </mat-toolbar>
 
+<div class="example-container mat-elevation-z8">
+<!--  @if (isLoadingResults || isRateLimitReached) {-->
+<!--    <div class="example-loading-shade">-->
+<!--      @if (isLoadingResults) {-->
+<!--        <mat-spinner></mat-spinner>-->
+<!--      }-->
+<!--      @if (isRateLimitReached) {-->
+<!--        <div class="example-rate-limit-reached">-->
+<!--          GitHub's API rate limit has been reached. It will be reset in one minute.-->
+<!--        </div>-->
+<!--      }-->
+<!--    </div>-->
+<!--  }-->
+<mat-table [dataSource]="hosts" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="ip">
+    <mat-header-cell *matHeaderCellDef> IP Address </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.ip}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="mac">
+    <mat-header-cell *matHeaderCellDef> MAC Address </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.mac}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef> Date Host Seen </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.date}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="hw">
+    <mat-header-cell *matHeaderCellDef> Hardware </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.date}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="known">
+    <mat-header-cell *matHeaderCellDef> Host is Known </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.known}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="now">
+    <mat-header-cell *matHeaderCellDef> Host is Online </mat-header-cell>
+    <mat-cell *matCellDef="let host"> {{host.now}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<!--  <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of GitHub search results"></mat-paginator>-->
+</div>
 <router-outlet></router-outlet>

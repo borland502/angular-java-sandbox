@@ -60,6 +60,10 @@
             },
             "defaultConfiguration": "development",
             "options": {
+                "host": "localhost",
+                "port": 4200,
+                "servePath": "/",
+                "hmr": true,
                 "proxyConfig": "apps/watchyourlan-dashboard/proxy.conf.json"
             }
         },
